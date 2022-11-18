@@ -1,0 +1,7 @@
+**** Read Me ****
+
+This repository consists of the project made using Windows form platform with dot net framework for our Advanced Software
+Engineering module.
+
+The project covered making an IDE-like environment with gui with some programming concepts like if statement, loop,etc. This
+project was done by making use of various OOP concepts like inheritence and polymorphism.

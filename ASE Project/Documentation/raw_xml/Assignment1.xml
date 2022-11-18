@@ -1,0 +1,447 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Assignment1</name>
+    </assembly>
+    <members>
+        <member name="T:Assignment1.Circle">
+            <summary>
+            Circle class allows creation of circle objects with specified properties and has a method to draw the circle.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Circle.#ctor(System.Int32,System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            Constructor of the circle class
+            </summary>
+            <param name="point1">first point of the origin</param>
+            <param name="point2">second point of the origin</param>
+            <param name="color">color of the circle object</param>
+            <param name="fillStatus">status of fill</param>
+            <param name="radius">radius of the circle</param>
+        </member>
+        <member name="M:Assignment1.Circle.drawShape(System.Drawing.Graphics)">
+            <summary>
+            Method to draw the circle object
+            </summary>
+            <param name="g">the grapic object which provides an interface to draw</param>
+        </member>
+        <member name="T:Assignment1.CommandParser">
+            <summary>
+            CommandParser class has methods required for parsing commands from string entered by a user and executing them.
+            </summary>
+        </member>
+        <member name="M:Assignment1.CommandParser.parseSequence(System.String)">
+            <summary>
+            parseSequece method obtains multiline string from the textBox and parses from multiline the sequences IF, WHILE, METHOD declaration and
+            non sequential part of the code.
+            </summary>
+            <param name="multiline">The string obtained from </param>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment1.CommandParser.parseIf(System.String)">
+            <summary>
+            parseIf method obtains string belonging to IF sequence from parseSequence. It checks the condition of the if statement and forwards
+            all the statement inside the if sequence to parseCommands method
+            </summary>
+            <param name="commands">The string representing IF sequence obtained from parseSequence</param>
+        </member>
+        <member name="M:Assignment1.CommandParser.parseLoop(System.String)">
+            <summary>
+            parseLoop method obtains string belonging to WHILE sequence from parseSequence. It checks the condition of the WHILE statement and forwards
+            all the statement inside the WHILE sequence to parseCommands in a loop until the condition is no longer true
+            </summary>
+            <param name="commands">The string representing WHILE sequence obtained from parseSequence</param>
+        </member>
+        <member name="M:Assignment1.CommandParser.parseMethod(System.String)">
+            <summary>
+            parseMethod method obtains string belong to METHOD declaration from parseSequence. It checks the validity of the METHOD declaration and adds
+            a new method if the METHOD declaration is valid and updates the method if new declaration is valid.
+            </summary>
+            <param name="commands">The string representing METHOD declaration sequence obtained from parseSequence</param>
+        </member>
+        <member name="M:Assignment1.CommandParser.parseCommands(System.String)">
+            <summary>
+            parseCommands method obtains non sequential group of commands and parses them into singular commands. The singular command is then forwarded to
+            parseIndivCommand method.
+            </summary>
+            <param name="allCommands">The string representing a group of individual non sequential commands.</param>
+        </member>
+        <member name="M:Assignment1.CommandParser.callMethod(System.String)">
+            <summary>
+            callMethod method obtains method signature representing a method call from parseMethod, checks for the method body in the method dictionary and forwards
+            the method body to parseCommands method.
+            </summary>
+            <param name="command">The string representing method call with the required values</param>
+        </member>
+        <member name="M:Assignment1.CommandParser.parseIndivCommand(System.String)">
+            <summary>
+            parseIndivCommand obtains splitted strings from parseCommands and forwards the individual commands to either checkVariableAssignment method or 
+            check command method based on the string.
+            </summary>
+            <param name="command">Individual command obtained from parseCommands method</param>
+        </member>
+        <member name="M:Assignment1.CommandParser.checkVariableAssignment(System.String)">
+            <summary>
+            checkVariableAssignment obtains an assignment command from parseIndivCommand. It assigns or updates the variable if the command is valid.
+            </summary>
+            <param name="command">String represnting a variable assignment.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment1.CommandParser.checkVariable(System.String)">
+            <summary>
+            checkVariable checks if the given variable exists or not.
+            </summary>
+            <param name="identifier">Identifier of the variable to be checked.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment1.CommandParser.getVariable(System.String)">
+            <summary>
+            getVariable gets the variable value from the variables dictionary based on the identifier given.
+            </summary>
+            <param name="identifier">String representing the identifier of the variable.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment1.CommandParser.checkCommand(System.String)">
+            <summary>
+            checkCommand method obtains individual shape commands from parseCommands method and executes them if they are valid.
+            </summary>
+            <param name="commands">Individual shape command obtained from parseCommand</param>
+        </member>
+        <member name="M:Assignment1.CommandParser.checkMethod(System.String)">
+            <summary>
+            checkMethod method checks if the method name exists in methods dictionary and returns value based on the result.
+            </summary>
+            <param name="identifier">The string representing method name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment1.CommandParser.getMethod(System.String)">
+            <summary>
+            getMethod method returns method body if based on the method identifier given
+            </summary>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment1.CommandParser.getExpression(System.String)">
+            <summary>
+            getExpresion method takes an logical expression with a variable and returns a mathematical expression.
+            </summary>
+            <param name="condition">Condition represents a logical expression with variables instead of numbers.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment1.CommandParser.resetPoints">
+            <summary>
+            resets the origin to top left corner
+            </summary>
+        </member>
+        <member name="M:Assignment1.CommandParser.resetShapes">
+            <summary>
+            clear the shapelist array
+            </summary>
+        </member>
+        <member name="T:Assignment1.Document">
+            <summary>
+            Document class has methods required to load and save the user commands from the textbox.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Document.openFile(System.Object,System.EventArgs,System.Windows.Forms.TextBox)">
+            <summary>
+            openFile method gets the commands from a text file to the TextBox
+            </summary>
+            <param name="sender">A parameter that contains reference to the control that raised the event</param>
+            <param name="e">Parameter that contains event data.</param>
+            <param name="MultilineCommand">TextBox on which the command is appended to.</param>
+        </member>
+        <member name="M:Assignment1.Document.saveFile(System.Object,System.EventArgs,System.Windows.Forms.TextBox)">
+            <summary>
+            saveFile method saves commands to a file.
+            </summary>
+            <param name="sender">A parameter that contains reference to the control that raised the event</param>
+            <param name="e">Parameter that contains event data</param>
+            <param name="MultilineCommand">TextBox on which the command is appended to</param>
+        </member>
+        <member name="T:Assignment1.Flash">
+            <summary>
+            Flash class has attributes and methods required to carry out threaded operations required to make flashing shapes.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Flash.#ctor(Assignment1.Form1,System.Collections.ArrayList)">
+            <summary>
+            constructor for Flash class.
+            </summary>
+            <param name="form">The form on which the threaded operation is to be done.</param>
+            <param name="shapes">The arraylist of shapes which could be flashed.</param>
+        </member>
+        <member name="M:Assignment1.Flash.flashshapes">
+            <summary>
+            flashShapes method flashes the shapes based on flags assigned over 500 ms interval
+            </summary>
+        </member>
+        <member name="T:Assignment1.Form1">
+            <summary>
+            The Form1 class has attributes and methods needed to run the GUI application form.
+            </summary>
+        </member>
+        <member name="F:Assignment1.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Assignment1.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Assignment1.InterfaceCommand">
+            <summary>
+            Interface for command classes.
+            </summary>
+        </member>
+        <member name="M:Assignment1.InterfaceCommand.Execute(System.Object,System.EventArgs,System.Windows.Forms.TextBox)">
+            <summary>
+            A method that needs to be overridden by the dervied classes.
+            </summary>
+            <param name="sender">object argument that contains the controller information</param>
+            <param name="e">argument that contains the event information</param>
+            <param name="MultilineCommand">argument that contains the textBox reference</param>
+        </member>
+        <member name="T:Assignment1.MenuOperation">
+            <summary>
+            MenuOperation class allows the creation of invoker object to execute methods in the main class.
+            </summary>
+        </member>
+        <member name="M:Assignment1.MenuOperation.#ctor(Assignment1.InterfaceCommand,Assignment1.InterfaceCommand)">
+            <summary>
+            MenuOperation constructor
+            </summary>
+            <param name="open">InterfaceCommand reference to OpenCommand object</param>
+            <param name="save">InterfaceCommand reference to SaveCommand object</param>
+        </member>
+        <member name="M:Assignment1.MenuOperation.clickOpen(System.Object,System.EventArgs,System.Windows.Forms.TextBox)">
+            <summary>
+            Executes method to open a file in main method.
+            </summary>
+            <param name="sender">Object argumetn that contains controller information</param>
+            <param name="e">Argument that contains event information.</param>
+            <param name="MultilineCommand">Argument that contains reference to textBox.</param>
+        </member>
+        <member name="M:Assignment1.MenuOperation.clickSave(System.Object,System.EventArgs,System.Windows.Forms.TextBox)">
+            <summary>
+            Executes method to save a file in main method.
+            </summary>
+            <param name="sender">Object argumetn that contains controller information</param>
+            <param name="e">Argument that contains event information.</param>
+            <param name="MultilineCommand">Argument that contains reference to textBox.</param>
+        </member>
+        <member name="T:Assignment1.OpenCommand">
+            <summary>
+            Command class for opening a saved file.
+            </summary>
+        </member>
+        <member name="M:Assignment1.OpenCommand.#ctor(Assignment1.Document)">
+            <summary>
+            Constructor for SaveCommmand class
+            </summary>
+            <param name="doc">The Document object needed to call document methods</param>
+        </member>
+        <member name="M:Assignment1.OpenCommand.Execute(System.Object,System.EventArgs,System.Windows.Forms.TextBox)">
+            <summary>
+            Execute executes document method to load file
+            </summary>
+            <param name="sender">Object argumetn that contains controller information</param>
+            <param name="e">Argument that contains event information.</param>
+            <param name="MultilineCommand">Argument that contains reference to textBox.</param>
+        </member>
+        <member name="T:Assignment1.Polygon">
+            <summary>
+            Polygon class provides methods and attributes for creating and drawing polygon objects.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Polygon.#ctor(System.Int32,System.Int32,System.String,System.String,System.Int32[])">
+            <summary>
+            Constructor to create polygon objects
+            </summary>
+            <param name="point1">First point of origin.</param>
+            <param name="point2">Second point of origin.</param>
+            <param name="color">Color of the polygon object.</param>
+            <param name="fillstatus">Fill status of the polygon.</param>
+            <param name="values">An integer array with point values for polygon.</param>
+        </member>
+        <member name="M:Assignment1.Polygon.drawShape(System.Drawing.Graphics)">
+            <summary>
+            drawShape draws the polygon object
+            </summary>
+            <param name="g">Grpahics object which provides interface to draw</param>
+        </member>
+        <member name="M:Assignment1.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Assignment1.Rectangle">
+            <summary>
+            Rectangle class provides methods and attributes for creating and drawing rectangle objects.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Rectangle.#ctor(System.Int32,System.Int32,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Constructor for rectangle object
+            </summary>
+            <param name="point1">first point of origin</param>
+            <param name="point2">second point of origin</param>
+            <param name="color">color of the object</param>
+            <param name="fillStatus">fill status of the object</param>
+            <param name="width">width of the rectangle</param>
+            <param name="height">height of the rectangle</param>
+        </member>
+        <member name="M:Assignment1.Rectangle.drawShape(System.Drawing.Graphics)">
+            <summary>
+            This method draws the rectangle
+            </summary>
+            <param name="g">graphics object which provides interface to draw</param>
+        </member>
+        <member name="T:Assignment1.InterfaceShapes">
+            <summary>
+            Interface for Shape abstract class with method signatures for method that must be defined.
+            </summary>
+        </member>
+        <member name="M:Assignment1.InterfaceShapes.setValues(System.String,System.Int32[])">
+            <summary>
+            sets the values of a shape
+            </summary>
+            <param name="fillstatus">status of fill; on/off</param>
+            <param name="parameters">parameters of shape</param>
+        </member>
+        <member name="M:Assignment1.InterfaceShapes.setPoint(System.Int32,System.Int32)">
+            <summary>
+            set origin point
+            </summary>
+            <param name="point1">first point of origin</param>
+            <param name="point2">second point of origin</param>
+        </member>
+        <member name="M:Assignment1.InterfaceShapes.drawShape(System.Drawing.Graphics)">
+            <summary>
+            method to draw the object
+            </summary>
+            <param name="g">the Graphics argument to draw object on</param>
+        </member>
+        <member name="M:Assignment1.InterfaceShapes.setColor(System.String)">
+            <summary>
+            set the color of the object
+            </summary>
+            <param name="Color">String value representing color</param>
+        </member>
+        <member name="T:Assignment1.SaveCommand">
+            <summary>
+            Command class for saving the file.
+            </summary>
+        </member>
+        <member name="M:Assignment1.SaveCommand.#ctor(Assignment1.Document)">
+            <summary>
+            Constructor for SaveCommmand class
+            </summary>
+            <param name="doc">The Document object needed to call document methods</param>
+        </member>
+        <member name="M:Assignment1.SaveCommand.Execute(System.Object,System.EventArgs,System.Windows.Forms.TextBox)">
+            <summary>
+            Execute executes document method to save file
+            </summary>
+            <param name="sender">Object argumetn that contains controller information</param>
+            <param name="e">Argument that contains event information.</param>
+            <param name="MultilineCommand">Argument that contains reference to textBox.</param>
+        </member>
+        <member name="T:Assignment1.Shape">
+            <summary>
+            Shape abstract class has methods and attributes for inheritance for a concrete shape class.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Shape.#ctor(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Shape constructor
+            </summary>
+            <param name="point1">first origin point</param>
+            <param name="point2">second origin point</param>
+            <param name="color">color</param>
+            <param name="fillStatus">status of the fill</param>
+        </member>
+        <member name="M:Assignment1.Shape.setColor(System.String)">
+            <summary>
+            Sets the color
+            </summary>
+            <param name="color">The string value that represents the color</param>
+        </member>
+        <member name="M:Assignment1.Shape.setPoint(System.Int32,System.Int32)">
+            <summary>
+            Sets the origin point
+            </summary>
+            <param name="point1">first point of the origin</param>
+            <param name="point2">first point of the origin</param>
+        </member>
+        <member name="M:Assignment1.ShapeFactory.ReturnShape(System.String,System.Int32,System.Int32,System.String,System.String,System.Int32[])">
+            <summary>
+            Returns object based on the passed parameters. 
+            </summary>
+            <param name="shape">String representing the shape.</param>
+            <param name="point1">First point of origin for the shape.</param>
+            <param name="point2">Second point of origin for the shape.</param>
+            <param name="color">Color of the shape.</param>
+            <param name="fillStatus">Status of the fill for the object. ON/OFF</param>
+            <param name="values">Any other additional values for the object like radius, points, etc.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Assignment1.InvalidSyntaxException">
+            <summary>
+            InvalidSyntaxException is a usermade exception to throw syntax errors.
+            </summary>
+        </member>
+        <member name="M:Assignment1.InvalidSyntaxException.#ctor(System.String)">
+            <summary>
+            Constructor for InvalidSyntaxException class
+            </summary>
+            <param name="message">Error message associated with the exception.</param>
+        </member>
+        <member name="T:Assignment1.Triangle">
+            <summary>
+            Triangle class provides methods and attributes for creating and drawing triangle objects.
+            </summary>
+        </member>
+        <member name="M:Assignment1.Triangle.#ctor(System.Int32,System.Int32,System.String,System.String,System.Int32[])">
+            <summary>
+            Constructor of the triangle class
+            </summary>
+            <param name="point1">first point of the origin</param>
+            <param name="point2">second point of the origin</param>
+            <param name="color">color of the object</param>
+            <param name="fillStatus">status of fill</param>
+            <param name="values">values for the vertices</param>
+        </member>
+        <member name="M:Assignment1.Triangle.drawShape(System.Drawing.Graphics)">
+            <summary>
+            Draws the triangle object
+            </summary>
+            <param name="g">graphics object which provides the interface to draw</param>
+        </member>
+        <member name="T:Assignment1.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Assignment1.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Assignment1.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

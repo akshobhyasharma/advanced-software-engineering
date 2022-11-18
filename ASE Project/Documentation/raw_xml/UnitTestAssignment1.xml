@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UnitTestAssignment1</name>
+    </assembly>
+    <members>
+        <member name="T:UnitTestAssignment1.UnitTest1">
+            <summary>
+            Test class for testing various methods in Assignment1 project
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod1">
+            <summary>
+            Tests if the factory class returns circle with the required parameters
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod2">
+            <summary>
+            Tests if the factory class returns rectangle with the required parameters
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod3">
+            <summary>
+            Tests if the factory class returns triangle with the given parameters
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod4">
+            <summary>
+            Tests if the factory class returns polygon with the given parameters
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod5">
+            <summary>
+            Tests if the command parser class returns the shape object with the given command
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod6">
+            <summary>
+            Tests if commandParser class enterprets the valid expression as valid
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod7">
+            <summary>
+            Tests if variable exists after passing the  variable assigning command to commandparser
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod8">
+            <summary>
+            Tests if accurate variable value is returned by getVariable method after running the command in the commandParser
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod9">
+            <summary>
+            Tests if method exists after declaring the method through parser.
+            </summary>
+        </member>
+        <member name="M:UnitTestAssignment1.UnitTest1.TestMethod10">
+            <summary>
+            Tests if the method body returned after declaration of method through command parser is accurate.
+            </summary>
+        </member>
+    </members>
+</doc>
